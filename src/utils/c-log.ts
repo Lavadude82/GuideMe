@@ -2,7 +2,7 @@ import cli from "cli-color";
 import config from "@conf";
 import timestamp from "@utils/timestamp";
 
-let enable_logging = config.LOG;
+let enable_logging = config.LOG=="DEBUG";
 export function rm() {
   console.clear();
 }
