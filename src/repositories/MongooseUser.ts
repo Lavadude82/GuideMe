@@ -37,6 +37,7 @@ export default class MongooseUserRepository implements IUserRepository {
             email: {
               address: data.email,
             },
+            createdAt: Date.now(),
           });
           user
             .save()

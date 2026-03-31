@@ -10,7 +10,7 @@ export const UserSchema = new Schema({
     address: { type: String, required: false },
     verified: { type: Boolean, required: false, default: false },
   },
-  createdAt: { type: Number, required: true, default: Date.now() },
+  createdAt: { type: Number, required: true },
   bot: { type: Boolean, required: true, default: false },
 });
 UserSchema.toJSONSchema();

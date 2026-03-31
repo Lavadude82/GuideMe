@@ -17,6 +17,9 @@ export default class MongooseTokenRepository implements ITokenRepository {
         ).hash,
         id: UUIDv4(),
         userId: data.id,
+        lastUsed: Date.now(),
+        createdAt: Date.now(),
+        expiry:  Date.now() + 1000 * 60 * 60 * 24 * 365,
       });
       token
         .save()

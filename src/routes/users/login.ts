@@ -17,7 +17,6 @@ export default function (
           err("Failed to Login User | ", response.error);
           return res.status(400).json(response.error);
         }
-        yay("User Logged In Successfully | ", req.body.username);
         return res.status(200).json(response);
       })
       .catch((error) => {

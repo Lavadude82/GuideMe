@@ -18,7 +18,6 @@ export default function (
           err("Failed to Create User | ", response.error);
           return res.status(400).json(response.error);
         }
-        yay("User Created Successfully | ", req.body.username);
         return res.status(201).json(response);
       })
       .catch((error) => {

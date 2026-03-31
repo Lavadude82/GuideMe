@@ -5,12 +5,11 @@ export const Token = new Schema({
   id: {type: String, required:true},
   token: { type: String, required: true },
   userId: { type: String, required: true },
-  lastUsed: { type: Number, required: true, default: Date.now() },
-  createdAt: { type: Number, required: true, default: Date.now() },
+  lastUsed: { type: Number, required: true},
+  createdAt: { type: Number, required: true },
   expiry: {
     type: Number,
-    required: true,
-    default: Date.now() + 1000 * 60 * 60 * 24 * 365,
+    required: true
   }, //7 Days
 });
 
