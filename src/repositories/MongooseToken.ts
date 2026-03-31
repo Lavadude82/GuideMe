@@ -33,13 +33,13 @@ export default class MongooseTokenRepository implements ITokenRepository {
     return new Promise((resolve, reject) => {
       TokenModel.findOne({ token: token }).then((token_obj) => {
         UserModel.findOne({ id: token_obj?.userId }).then((user) => {
-          if (!user) return resolve({ success: false, error: { type: "USER_NOT_FOUND" } });
+          if (!user) return resolve({ success: false, error:"USER_NOT_FOUND" });
           resolve({ success: true, user: user })
         }).catch(e => {
-          resolve({ success: false, error: { type: "USER_NOT_FOUND" } })
+          resolve({ success: false, error:  "USER_NOT_FOUND" })
         })
       }).catch(e => {
-        resolve({ success: false, error: { type: "TOKEN_DOES_NOT_EXIST" } })
+        resolve({ success: false, error: "TOKEN_DOES_NOT_EXIST"  })
       })
     })
   }

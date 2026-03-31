@@ -22,7 +22,7 @@ export default class MongooseUserRepository implements IUserRepository {
           if (!res.success)
             return resolve({
               success: false,
-              error: { type: res.error!.type },
+              error:res.error,
             }); //Should never Happen
 
           //Hash Password & Obtain Salt
@@ -50,7 +50,7 @@ export default class MongooseUserRepository implements IUserRepository {
                   if (!res.success)
                     return resolve({
                       success: false,
-                      error: { type: "TOKEN_CREATION_FAILED" },
+                      error:"TOKEN_CREATION_FAILED",
                     });
 
                   resolve({ success: true, token: res.token });
@@ -71,7 +71,7 @@ export default class MongooseUserRepository implements IUserRepository {
       if (!data.username && !data.login)
         return resolve({
           success: false,
-          error: { type: "NO_CREDENTIALS_PROVIDED" },
+          error:"NO_CREDENTIALS_PROVIDED",
         });
       if (data.username) {
         this.findByUsername(data.username).then((res) => {
@@ -82,7 +82,7 @@ export default class MongooseUserRepository implements IUserRepository {
           if (hash !== user.password)
             return resolve({
               success: false,
-              error: { type: "INVALID_LOGIN_CREDENTIALS" },
+              error: "INVALID_LOGIN_CREDENTIALS" ,
             });
           MongooseToken.create({
             name: data.client || "Unknown Device",
@@ -93,7 +93,7 @@ export default class MongooseUserRepository implements IUserRepository {
               if (!res.success)
                 return resolve({
                   success: false,
-                  error: { type: "TOKEN_CREATION_FAILED" },
+                  error:"TOKEN_CREATION_FAILED",
                 });
 
               resolve({ success: true, token: res.token });
@@ -111,7 +111,7 @@ export default class MongooseUserRepository implements IUserRepository {
           if (hash !== user.password)
             return resolve({
               success: false,
-              error: { type: "INVALID_LOGIN_CREDENTIALS" },
+              error:  "INVALID_LOGIN_CREDENTIALS" ,
             });
           MongooseToken.create({
             name: data.client || "Unknown Device",
@@ -122,7 +122,7 @@ export default class MongooseUserRepository implements IUserRepository {
               if (!res.success)
                 return resolve({
                   success: false,
-                  error: { type: "TOKEN_CREATION_FAILED" },
+                  error: "TOKEN_CREATION_FAILED" ,
                 });
 
               resolve({ success: true, token: res.token });
@@ -134,7 +134,7 @@ export default class MongooseUserRepository implements IUserRepository {
       } else {
         return resolve({
           success: false,
-          error: { type: "NO_CREDENTIALS_PROVIDED" },
+          error:  "NO_CREDENTIALS_PROVIDED" ,
         });
       }
     });
@@ -147,7 +147,7 @@ export default class MongooseUserRepository implements IUserRepository {
           if (!user)
             return resolve({
               success: false,
-              error: { type: "USER_NOT_FOUND" },
+              error:"USER_NOT_FOUND" ,
             });
           resolve({ success: true, user: user });
         })
@@ -159,13 +159,13 @@ export default class MongooseUserRepository implements IUserRepository {
 
   async findByEmail(email: string): Promise<GenericUserFindResponseDTO> {
     return new Promise((resolve, reject) => {
-      if (email.length == 0) return resolve({ success: false, error: { type: "USER_NOT_FOUND" } });
+      if (email.length == 0) return resolve({ success: false, error:"USER_NOT_FOUND"  });
       UserModel.findOne({ "email.address": email })
         .then((user) => {
           if (!user)
             return resolve({
               success: false,
-              error: { type: "USER_NOT_FOUND" },
+              error:  "USER_NOT_FOUND" ,
             });
           resolve({ success: true, user: user });
         })
@@ -182,7 +182,7 @@ export default class MongooseUserRepository implements IUserRepository {
           if (!user)
             return resolve({
               success: false,
-              error: { type: "USER_NOT_FOUND" },
+              error:  "USER_NOT_FOUND" ,
             });
           resolve({ success: true, user: user });
         })
@@ -201,11 +201,11 @@ export default class MongooseUserRepository implements IUserRepository {
         if (res.success)
           return resolve({
             success: false,
-            error: { type: "USERNAME_IN_USE" },
+            error:  "USERNAME_IN_USE" ,
           }); //Should never Happen
         this.findByEmail(email).then((res) => {
           if (res.success)
-            return resolve({ success: false, error: { type: "EMAIL_IN_USE" } }); //Should never Happen
+            return resolve({ success: false, error: "EMAIL_IN_USE" } ); //Should never Happen
           resolve({ success: true });
         });
       });

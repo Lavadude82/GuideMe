@@ -1,6 +1,4 @@
-export type AuthErrorType = {
-  type:
-    | "EMAIL_INVALID"
+export type ErrType =  "EMAIL_INVALID"
     | "USERNAME_INVALID_LENGTH"
     | "USERNAME_CONTAINS_INVALID_CHARACTERS"
     | "PASSWORD_TOO_SHORT"
@@ -20,12 +18,3 @@ export type AuthErrorType = {
     | "EMPTY_PASSWORD"
     | "TOKEN_DOES_NOT_EXIST"
     | "NO_AUTHORIZATION";
-};
-
-export type DMChannelErrorType = AuthErrorType | ServerErrorType | {
-  type: "EMPTY_USERS_LIST";
-};
-
-export type ServerErrorType = {
-  type: "INTERNAL_SERVER_ERROR" | "DATABASE_ERROR" | "VALIDATION_ERROR";
-};

@@ -14,7 +14,7 @@ export default function (
     MongooseUser.login(req.body)
       .then((response) => {
         if (!response.success) {
-          err("Failed to Login User | ", response.error?.type);
+          err("Failed to Login User | ", response.error);
           return res.status(400).json(response.error);
         }
         yay("User Logged In Successfully | ", req.body.username);

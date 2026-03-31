@@ -1,4 +1,4 @@
-import { AuthErrorType, DMChannelErrorType, ServerErrorType } from "./ErrorDTO";
+import { ErrType } from "./ErrorDTO";
 import { InferSchemaType } from "mongoose";
 import { UserSchema } from "@models/User";
 
@@ -10,7 +10,7 @@ export type CreateTokenDTO = {
 
 export type CreateTokenResponseDTO = {
   success: boolean;
-  error?: DMChannelErrorType;
+  error?: ErrType;
   token?: string;
 };
 export type GetUserByTokenDTO = {
@@ -18,6 +18,6 @@ export type GetUserByTokenDTO = {
 };
 export type GetUserByTokenResponseDTO = {
   success: boolean;
-  error?: AuthErrorType;
+  error?: ErrType;
   user?: InferSchemaType<typeof UserSchema>;
 };

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import {MongooseUser} from "@repo/MongooseUser"
 
 import { err, yay } from "@utils/c-log";
-import { AuthErrorType } from "@controllers/dto/ErrorDTO";
+import { ErrType } from "@controllers/dto/ErrorDTO";
 
 export default function (
   app: express.Application,
@@ -11,11 +11,11 @@ export default function (
 ) {
   // Handle API User Creation Request
   app.post("/api/v1/user/register", async (req, res) => {
-    if(!req.body) return res.status(400).json({type:"EMPTY_BODY"} as AuthErrorType)
+    if(!req.body) return res.status(400).json("EMPTY_BODY" as ErrType)
     MongooseUser.create(req.body)
       .then((response) => {
         if (!response.success) {
-          err("Failed to Create User | ", response.error?.type);
+          err("Failed to Create User | ", response.error);
           return res.status(400).json(response.error);
         }
         yay("User Created Successfully | ", req.body.username);
